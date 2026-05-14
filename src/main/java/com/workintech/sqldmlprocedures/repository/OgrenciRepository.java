@@ -13,11 +13,11 @@ public interface OgrenciRepository extends JpaRepository<Ogrenci, Long> {
 
     List<Ogrenci> findBySinif(String sinif);
 
-    @Query(value = "SELECT * FROM ogrencilistesi()", nativeQuery = true)
+    @Query(value = "SELECT * FROM ogrenci", nativeQuery = true)
     List<Ogrenci> findAllOgrenci();
 
     @Transactional
     @Modifying
-    @Query(value = "CALL public.sil(:ogrNo)", nativeQuery = true)
+    @Query(value = "DELETE FROM ogrenci WHERE ogrno = :ogrNo", nativeQuery = true)
     void removeOgrenci(long ogrNo);
 }
